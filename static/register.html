@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>
+        ATHENA
+    </title>
+    <style>
+        body {
+            min-height: 100vh;
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width:400px; margin:auto;">
+        <h1>WELCOME TO ATHENA PETIR BOCOOOOOOOR!</h1>
+        <input type="text" id="username" placeholder="username">
+        <input type="password" id="password" placeholder="password">
+        <input type="number" id="age" placeholder="age">
+        <input type="text" id="depo" placeholder="depo awal">
+        <button id="buttonRegister">REGISTER</button>
+        <br>
+        <a href="http://localhost:3000/static/index.html" style="color:white;">Login</a>
+    </div>
+</body>
+
+<script>
+    var btn = document.getElementById("buttonRegister")
+    var username = document.getElementById("username")
+    var password = document.getElementById("password")
+    var age = document.getElementById("age")
+    var depo = document.getElementById("depo")
+
+    btn.addEventListener("click", register);
+
+    function register() {
+        fetch("http://localhost:3000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: username.value,
+                    password: password.value,
+                    age: age.value,
+                    deposit: depo.value
+                })
+            })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                }
+                return Promise.reject(response);
+            }).then(function (data) {
+                alert(data.message);
+                // if (confirm(data.message)) {
+                //     window.location.replace("http://localhost:3000/static/index.html")
+                // }
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+
+</html>

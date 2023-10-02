@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>
+        ATHENA
+    </title>
+    <style>
+        body {
+            min-height: 100vh;
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width:400px; margin:auto;">
+        <h1>SPIN TO MAXWIN!</h1>
+        <h3 id="nama"></h3>
+        <h3 id="saldo"></h3>
+        <button id="gacor">GACOR KANG!</button>
+        
+        <div id="win"></div>
+    </div>
+</body>
+
+<script>
+    (function () {
+        const ls = localStorage.getItem('user')
+        if (ls === null) {
+            if (confirm('Anda belum login!')) {
+                window.location.replace("http://localhost:3000/static/index.html")
+            }
+        }
+        const data = JSON.parse(ls)
+        var nama = document.getElementById("nama").innerHTML = "Halo, " + data.username
+        var saldo = document.getElementById("saldo").innerHTML = "Saldo anda: " + data.balance
+    })();
+
+    var btn = document.getElementById("gacor")
+    btn.addEventListener("click", spin);
+
+    function spin() {
+        const ls = localStorage.getItem('user')
+        const data = JSON.parse(ls)
+        var win = document.getElementById("win")
+        fetch("http://localhost:3000/spin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: data.id,
+                    deposit: data.balance,
+                })
+            })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                }
+                return Promise.reject(response);
+            }).then(function (dataresp) {
+                const maxwin = dataresp.data
+                win.innerHTML = "<marquee><h1>ANDA MENANG " + data.balance * maxwin +" </h1></marquee>"
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+
+</html>

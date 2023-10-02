@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>
+            ATHENA
+        </title>
+        <style>
+            body {
+                min-height: 100vh;
+                background-color: purple;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div style="width:400px; margin:auto;">
+            <h1>WELCOME TO ATHENA PETIR BOCOOOOOOOR!</h1>
+            <input type="text" id="username" placeholder="username">
+            <input type="password" id="password" placeholder="password">
+            <button id="buttonLogin">LOGIN</button>
+            <br>
+            <a href="http://localhost:3000/static/register.html" style="color:white;">Not registered yet?</a>
+        </div>
+    </body>
+
+    <script>
+        var btn = document.getElementById("buttonLogin")
+        var username = document.getElementById("username")
+        var password = document.getElementById("password")
+    
+        btn.addEventListener("click", login);
+    
+        function login() {
+            fetch("http://localhost:3000/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username: username.value,
+                        password: password.value,
+                    })
+                })
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    return Promise.reject(response);
+                }).then(function (data) {
+                    alert(data.message);
+                    localStorage.setItem("user", JSON.stringify(data.data))
+                    window.location.replace("http://localhost:3000/static/spin.html")
+                }).catch(function (error) {
+                    console.log(error);
+                });
+        }
+    </script>
+</html>
