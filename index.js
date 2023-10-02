@@ -15,7 +15,7 @@ app.use(cors())
 
 const router = express.Router()
 router.get('/', function (req, res, next) {
-    res.redirect('http://localhost:3000/static/index.html')
+    res.redirect('https://nodejs-production-176d.up.railway.app/static/index.html')
 });
 
 router.post('/register', function (req, res, next) {
@@ -141,7 +141,7 @@ router.post('/spin', function (req, res, next) {
 });
 
 router.get('/spin', function (req, res, next) {
-    res.redirect('http://localhost:3000/static/spin.html')
+    res.redirect('https://nodejs-production-176d.up.railway.app/static/spin.html')
 });
 
 // http router

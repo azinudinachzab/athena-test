@@ -21,7 +21,7 @@
         <input type="text" id="depo" placeholder="depo awal">
         <button id="buttonRegister">REGISTER</button>
         <br>
-        <a href="http://localhost:3000/static/index.html" style="color:white;">Login</a>
+        <a href="https://nodejs-production-176d.up.railway.app/static/index.html" style="color:white;">Login</a>
     </div>
 </body>
 
@@ -35,7 +35,7 @@
     btn.addEventListener("click", register);
 
     function register() {
-        fetch("http://localhost:3000/register", {
+        fetch("https://nodejs-production-176d.up.railway.app/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -55,7 +55,7 @@
             }).then(function (data) {
                 alert(data.message);
                 // if (confirm(data.message)) {
-                //     window.location.replace("http://localhost:3000/static/index.html")
+                //     window.location.replace("https://nodejs-production-176d.up.railway.app/static/index.html")
                 // }
             }).catch(function (error) {
                 console.log(error);

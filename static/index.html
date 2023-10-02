@@ -18,7 +18,7 @@
             <input type="password" id="password" placeholder="password">
             <button id="buttonLogin">LOGIN</button>
             <br>
-            <a href="http://localhost:3000/static/register.html" style="color:white;">Not registered yet?</a>
+            <a href="https://nodejs-production-176d.up.railway.app/static/register.html" style="color:white;">Not registered yet?</a>
         </div>
     </body>
 
@@ -30,7 +30,7 @@
         btn.addEventListener("click", login);
     
         function login() {
-            fetch("http://localhost:3000/login", {
+            fetch("https://nodejs-production-176d.up.railway.app/login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -48,7 +48,7 @@
                 }).then(function (data) {
                     alert(data.message);
                     localStorage.setItem("user", JSON.stringify(data.data))
-                    window.location.replace("http://localhost:3000/static/spin.html")
+                    window.location.replace("https://nodejs-production-176d.up.railway.app/static/spin.html")
                 }).catch(function (error) {
                     console.log(error);
                 });

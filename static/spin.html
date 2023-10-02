@@ -28,7 +28,7 @@
         const ls = localStorage.getItem('user')
         if (ls === null) {
             if (confirm('Anda belum login!')) {
-                window.location.replace("http://localhost:3000/static/index.html")
+                window.location.replace("https://nodejs-production-176d.up.railway.app/static/index.html")
             }
         }
         const data = JSON.parse(ls)
@@ -43,7 +43,7 @@
         const ls = localStorage.getItem('user')
         const data = JSON.parse(ls)
         var win = document.getElementById("win")
-        fetch("http://localhost:3000/spin", {
+        fetch("https://nodejs-production-176d.up.railway.app/spin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
